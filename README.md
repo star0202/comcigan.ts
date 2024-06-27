@@ -1,5 +1,8 @@
 # comcigan.ts
 
+[![npm version](https://img.shields.io/npm/v/comcigan.ts?style=flat-square)](https://www.npmjs.com/package/comcigan.ts)
+![License](https://img.shields.io/github/license/star0202/comcigan.ts?style=flat-square)
+
 [컴시간알리미](http://컴시간학생.kr)를 파싱하는 TypeScript 라이브러리입니다.
 
 ## 설치
