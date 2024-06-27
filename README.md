@@ -21,7 +21,7 @@ import Comcigan, { Weekday } from 'comcigan.ts'
 const comcigan = new Comcigan()
 
 const main = async () => {
-  const schools = await comcigan.searchSchool('학교 이름')
+  const schools = await comcigan.searchSchools('학교 이름')
   const timetable = await comcigan.getTimetable(schools[0].code)
 
   console.log(timetable.getByDay(1, 2, Weekday.Monday)) // 1학년 2반 월요일 시간표
