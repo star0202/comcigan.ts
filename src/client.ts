@@ -18,6 +18,7 @@ export default class Comcigan {
 
   private readonly dataManager = new DataManager(this.rest)
 
+  /** 학교를 검색합니다. */
   async searchSchools(schoolName: string): Promise<School[]> {
     const { mainRoute, searchRoute } = await this.dataManager.getData()
     const res = await this.rest.get(
@@ -34,6 +35,7 @@ export default class Comcigan {
     }))
   }
 
+  /** 학교 코드를 이용해 학교 시간표를 불러옵니다. */
   async getRawTimetable(schoolCode: number): Promise<Timetable[][][][]> {
     const { mainRoute, timetableRoute, teacherCode, dayCode, subjectCode } =
       await this.dataManager.getData()
@@ -62,6 +64,7 @@ export default class Comcigan {
     )
   }
 
+  /** 학교 코드를 이용해 학교 시간표를 불러오고, `TimetableManager`로 변환해 사용할 수 있는 형태로 제공합니다. */
   async getTimetable(schoolCode: number) {
     return new TimetableManager(await this.getRawTimetable(schoolCode))
   }

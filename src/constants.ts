@@ -13,6 +13,7 @@ export const RegExes = {
   WhiteSpace: /\0+$/,
 }
 
+/** 요일 */
 export enum Weekday {
   Monday = 1,
   Tuesday,
