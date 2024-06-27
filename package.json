@@ -4,6 +4,10 @@
   "description": "A Comcigan parser written in TypeScript",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/star0202/comcigan.ts"
+  },
   "scripts": {
     "build": "rimraf dist && tsc",
     "lint": "eslint src --ignore-path .gitignore"
