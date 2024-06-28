@@ -13,18 +13,19 @@ yarn add comcigan.ts  # yarn
 pnpm add comcigan.ts  # pnpm
 ```
 
-## 사용법
+## 사용 예시
 
 ```typescript
-import Comcigan, { Weekday } from 'comcigan.ts'
+import Comcigan, { School, Weekday } from 'comcigan.ts'
 
 const comcigan = new Comcigan()
 
 const main = async () => {
-  const schools = await comcigan.searchSchools('학교 이름')
-  const timetable = await comcigan.getTimetable(schools[0].code)
+  const searchedSchools = await comcigan.searchSchools('학교 이름') // 학교 검색
+  const school = await School.fromName('학교 이름') // 바로 불러오기 (== searchedSchools[0])
 
-  console.log(timetable.getByDay(1, 2, Weekday.Monday)) // 1학년 2반 월요일 시간표
+  console.log(await school.getTimetable(3, 3, Weekday.Friday)) // 3학년 3반 금요일 시간표
+  console.log(await comcigan.getTimetable(school.code, 3, 3, Weekday.Friday)) // 학교 코드를 이용하는 방법
 }
 
 main()
