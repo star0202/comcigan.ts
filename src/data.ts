@@ -15,7 +15,7 @@ interface Data {
 export default class DataManager {
   private _data: Data | null = null
 
-  private _lastFetch = 0
+  private _lastFetchDate = 0
 
   constructor(private readonly rest: AxiosInstance) {}
 
@@ -43,7 +43,7 @@ export default class DataManager {
     const subject = RegExes.SubjectCode.exec(data)
     if (!subject) throw new Error('Failed to fetch subject code')
 
-    this._lastFetch = Date.now()
+    this._lastFetchDate = new Date().getDate()
     this._data = {
       mainRoute: main[0],
       searchRoute: search[0],
@@ -56,7 +56,7 @@ export default class DataManager {
   }
 
   async getData() {
-    if (this._data && Date.now() - this._lastFetch < 1000 * 60 * 60)
+    if (this._data && this._lastFetchDate === new Date().getDate())
       return this._data
 
     return this.fetchData()
