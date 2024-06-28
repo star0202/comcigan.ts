@@ -3,7 +3,6 @@ import DataManager from './data'
 import School from './models/School'
 import type Timetable from './models/Timetable'
 import { encodeBase64, encodeEUCKR } from './utils/encode'
-import { log10int } from './utils/math'
 import { parseResponse } from './utils/parse'
 import axios from 'axios'
 
@@ -57,15 +56,20 @@ export default class Comcigan {
     const teachersLen = Math.floor(Math.log10(teachers.length - 1)) + 1
     const subjects = data[`자료${subjectCode}`] as string[]
 
-    return (data[`자료${dayCode}`] as number[][][][]).slice(1).map((grade) =>
-      grade.slice(1).map((cls) =>
-        cls.slice(1).map((day) =>
-          day.slice(1).map((period) => {
+    const original = data[`자료${originalCode}`] as number[][][][]
+    const day = data[`자료${dayCode}`] as number[][][][]
+
+    return day.slice(1).map((grade, gIdx) =>
+      grade.slice(1).map((cls, cIdx) =>
+        cls.slice(1).map((day, dIdx) =>
+          day.slice(1).map((period, pIdx) => {
             const p = period.toString()
 
             return {
               subject: subjects[Number(p.slice(0, p.length - teachersLen - 1))],
               teacher: teachers[Number(p.slice(-teachersLen))],
+              changed:
+                period !== original[gIdx + 1][cIdx + 1][dIdx + 1][pIdx + 1],
             }
           }),
         ),

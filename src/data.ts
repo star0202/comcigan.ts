@@ -8,6 +8,7 @@ interface Data {
   timetableRoute: string
 
   teacherCode: string
+  originalCode: string
   dayCode: string
   subjectCode: string
 }
@@ -37,6 +38,9 @@ export default class DataManager {
     const teacher = RegExes.TeacherCode.exec(data)
     if (!teacher) throw new Error('Failed to fetch teacher code')
 
+    const original = RegExes.OriginalCode.exec(data)
+    if (!original) throw new Error('Failed to fetch original code')
+
     const day = RegExes.DayCode.exec(data)
     if (!day) throw new Error('Failed to fetch day code')
 
@@ -49,6 +53,7 @@ export default class DataManager {
       searchRoute: search[0],
       timetableRoute: timetable[0],
       teacherCode: teacher[0],
+      originalCode: original[0],
       dayCode: day[0],
       subjectCode: subject[0],
     }

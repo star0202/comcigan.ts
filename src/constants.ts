@@ -8,6 +8,7 @@ export const RegExes = {
   SearchRoute: /(?<=\?)\d+(?=l)/,
   TimetableRoute: /(?<=')\d+(?=_')/,
   TeacherCode: /(?<=성명=자료\.자료)\d+/,
+  OriginalCode: /(?<=원자료=Q자료\(자료.자료)\d+/,
   DayCode: /(?<=일일자료=Q자료\(자료.자료)\d+/,
   SubjectCode: /(?<=자료.자료)\d+(?=\[sb\])/,
   WhiteSpace: /\0+$/,
