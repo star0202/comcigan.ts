@@ -54,7 +54,7 @@ export default class Comcigan {
     const data = parseResponse(res.data)
 
     const teachers = data[`자료${teacherCode}`] as string[]
-    const teachersLen = log10int(teachers.length - 1) + 1
+    const teachersLen = Math.floor(Math.log10(teachers.length - 1)) + 1
     const subjects = data[`자료${subjectCode}`] as string[]
 
     return (data[`자료${dayCode}`] as number[][][][]).slice(1).map((grade) =>
