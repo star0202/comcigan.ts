@@ -18,7 +18,9 @@
       "quoteStyle": "single"
     }
   },
-  "files": {
-    "ignore": ["node_modules", "dist"]
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
   }
 }
