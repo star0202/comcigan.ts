@@ -21,9 +21,6 @@ importers:
       '@types/node':
         specifier: ^20.14.9
         version: 20.14.9
-      prettier:
-        specifier: ^3.3.2
-        version: 3.3.2
       rimraf:
         specifier: ^5.0.7
         version: 5.0.7
@@ -1271,11 +1268,6 @@ packages:
   possible-typed-array-names@1.0.0:
     resolution: {integrity: sha512-d7Uw+eZoloe0EHDIYoe+bQ5WXnGMOpmiZFTuMWCwpjzzkL2nTjcKiAk4hh8TjnGye2TwWOk3UXucZ+3rbmBa8Q==}
     engines: {node: '>= 0.4'}
-
-  prettier@3.3.2:
-    resolution: {integrity: sha512-rAVeHYMcv8ATV5d508CFdn+8/pHPpXeIid1DdrPwXnaAdH7cqjVbpJaT5eq4yRAFU/lsbwYwSF/n5iNrdJHPQA==}
-    engines: {node: '>=14'}
-    hasBin: true
 
   pretty-ms@9.0.0:
     resolution: {integrity: sha512-E9e9HJ9R9NasGOgPaPE8VMeiPKAyWR5jcFpNnwIejslIhWqdqOrb2wShBsncMPUb+BcCd2OPYfh7p2W6oemTng==}
@@ -2883,8 +2875,6 @@ snapshots:
       load-json-file: 4.0.0
 
   possible-typed-array-names@1.0.0: {}
-
-  prettier@3.3.2: {}
 
   pretty-ms@9.0.0:
     dependencies:
