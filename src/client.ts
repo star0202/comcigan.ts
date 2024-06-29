@@ -1,10 +1,10 @@
+import axios from 'axios'
 import { BASE_URL, USER_AGENT } from './constants'
 import DataManager from './data'
 import School from './models/School'
 import type Timetable from './models/Timetable'
 import { encodeBase64, encodeEUCKR } from './utils/encode'
 import { parseResponse } from './utils/parse'
-import axios from 'axios'
 
 export default class Comcigan {
   private readonly rest = axios.create({

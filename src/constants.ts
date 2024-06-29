@@ -17,8 +17,8 @@ export const RegExes = {
 /** 요일 */
 export enum Weekday {
   Monday = 1,
-  Tuesday,
-  Wednesday,
-  Thursday,
-  Friday,
+  Tuesday = 2,
+  Wednesday = 3,
+  Thursday = 4,
+  Friday = 5,
 }

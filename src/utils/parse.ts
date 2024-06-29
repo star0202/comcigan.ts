@@ -1,5 +1,5 @@
 import { RegExes } from '../constants'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// biome-ignore lint/suspicious/noExplicitAny: any as default
 export const parseResponse = <T = any>(str: string): T =>
   JSON.parse(str.replace(RegExes.WhiteSpace, ''))

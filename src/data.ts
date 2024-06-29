@@ -1,6 +1,6 @@
-import { RegExes } from './constants'
 import type { AxiosInstance } from 'axios'
 import { decode } from 'iconv-lite'
+import { RegExes } from './constants'
 
 interface Data {
   mainRoute: string
