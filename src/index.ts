@@ -1,10 +1,6 @@
-import Comcigan from './client'
-import School from './models/School'
+export { default } from './client'
 
-export default Comcigan
-
-export { School }
-export * from './models/Region'
-export * from './models/School'
-export * from './models/Timetable'
+export { default as Region } from './models/Region'
+export { default as School } from './models/School'
+export { default as Timetable } from './models/Timetable'
 export { Weekday } from './constants'
