@@ -1,7 +1,7 @@
 import Comcigan from '../client'
 import Fetcher from './Fetcher'
 import type Region from './Region'
-import type Timetable from './Timetable'
+import type { Timetable } from './Timetable'
 
 interface ISchool {
   /** 학교 코드 */
