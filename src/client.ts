@@ -56,30 +56,29 @@ export default class Comcigan {
     const teachersLen = Math.floor(Math.log10(teachers.length - 1)) + 1
     const subjects = data[`자료${subjectCode}`] as string[]
 
-    const original = data[`자료${originalCode}`] as number[][][][]
+    const original = data[`자료${originalCode}`] as (number | undefined)[][][][]
     const day = data[`자료${dayCode}`] as number[][][][]
+
+    const getSubject = (code: number) =>
+      subjects[Number(code.toString().slice(0, -teachersLen - 1))]
+    const getTeacher = (code: number) =>
+      teachers[Number(code.toString().slice(-teachersLen))]
 
     return day.slice(1).map((grade, gIdx) =>
       grade.slice(1).map((cls, cIdx) =>
         cls.slice(1).map((day, dIdx) =>
           day.slice(1).map((period, pIdx) => {
-            const p = period.toString()
-            const origin =
-              original[gIdx + 1][cIdx + 1][dIdx + 1][pIdx + 1].toString()
-            const changed = p !== origin
+            const origin = original[gIdx + 1][cIdx + 1][dIdx + 1][pIdx + 1]
+            const changed = period !== origin
 
             return {
-              subject: subjects[Number(p.slice(0, p.length - teachersLen - 1))],
-              teacher: teachers[Number(p.slice(-teachersLen))],
+              subject: getSubject(period),
+              teacher: getTeacher(period),
               changed,
               ...(changed
                 ? {
-                    originalSubject:
-                      subjects[
-                        Number(origin.slice(0, origin.length - teachersLen - 1))
-                      ],
-                    originalTeacher:
-                      teachers[Number(origin.slice(-teachersLen))],
+                    originalSubject: origin ? getSubject(origin) : '없음',
+                    originalTeacher: origin ? getTeacher(origin) : '없음',
                   }
                 : {}),
             } as Timetable
