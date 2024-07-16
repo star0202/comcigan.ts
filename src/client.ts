@@ -5,6 +5,7 @@ import School from './models/School'
 import type { Timetable } from './models/Timetable'
 import { encodeBase64, encodeEUCKR } from './utils/encode'
 import { parseResponse } from './utils/parse'
+import { mergeMap } from './utils/array'
 
 export default class Comcigan {
   private readonly rest = axios.create({
@@ -56,29 +57,29 @@ export default class Comcigan {
     const teachersLen = Math.floor(Math.log10(teachers.length - 1)) + 1
     const subjects = data[`자료${subjectCode}`] as string[]
 
-    const original = data[`자료${originalCode}`] as (number | undefined)[][][][]
-    const day = data[`자료${dayCode}`] as number[][][][]
+    const original = data[`자료${originalCode}`] as number[][][][]
+    const now = data[`자료${dayCode}`] as number[][][][]
 
-    const getSubject = (code: number) =>
-      subjects[Number(code.toString().slice(0, -teachersLen - 1))]
-    const getTeacher = (code: number) =>
-      teachers[Number(code.toString().slice(-teachersLen))]
+    const getSubject = (code?: number) =>
+      code
+        ? subjects[Number(code.toString().slice(0, -teachersLen - 1))]
+        : '없음'
+    const getTeacher = (code?: number) =>
+      code ? teachers[Number(code.toString().slice(-teachersLen))] : '없음'
 
-    return day.slice(1).map((grade, gIdx) =>
-      grade.slice(1).map((cls, cIdx) =>
-        cls.slice(1).map((day, dIdx) =>
-          day.slice(1).map((period, pIdx) => {
-            const origin = original[gIdx + 1][cIdx + 1][dIdx + 1][pIdx + 1]
-            const changed = period !== origin
-
+    return mergeMap(now.slice(1), original.slice(1), (gNow, gOrigin) =>
+      mergeMap(gNow.slice(1), gOrigin.slice(1), (cNow, cOrigin) =>
+        mergeMap(cNow.slice(1), cOrigin.slice(1), (dNow, dOrigin) =>
+          mergeMap(dNow.slice(1), dOrigin.slice(1), (pNow, pOrigin) => {
+            const changed = pNow !== pOrigin
             return {
-              subject: getSubject(period),
-              teacher: getTeacher(period),
+              subject: getSubject(pNow),
+              teacher: getTeacher(pNow),
               changed,
               ...(changed
                 ? {
-                    originalSubject: origin ? getSubject(origin) : '없음',
-                    originalTeacher: origin ? getTeacher(origin) : '없음',
+                    originalSubject: getSubject(pOrigin),
+                    originalTeacher: getTeacher(pOrigin),
                   }
                 : {}),
             } as Timetable
