@@ -3,9 +3,9 @@ import { BASE_URL, USER_AGENT } from './constants'
 import DataManager from './data'
 import School from './models/School'
 import type { Timetable } from './models/Timetable'
+import { mergeMap } from './utils/array'
 import { encodeBase64, encodeEUCKR } from './utils/encode'
 import { parseResponse } from './utils/parse'
-import { mergeMap } from './utils/array'
 
 export default class Comcigan {
   private readonly rest = axios.create({
