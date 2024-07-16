@@ -62,10 +62,10 @@ export default class Comcigan {
 
     const getSubject = (code?: number) =>
       code
-        ? subjects[Number(code.toString().slice(0, -teachersLen - 1))]
+        ? subjects[code / 10 ** (teachersLen + 1) | 0]
         : '없음'
     const getTeacher = (code?: number) =>
-      code ? teachers[Number(code.toString().slice(-teachersLen))] : '없음'
+      code ? teachers[code % 10 ** teachersLen] : '없음'
 
     return mergeMap(now.slice(1), original.slice(1), (gNow, gOrigin) =>
       mergeMap(gNow.slice(1), gOrigin.slice(1), (cNow, cOrigin) =>
