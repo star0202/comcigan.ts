@@ -61,9 +61,7 @@ export default class Comcigan {
     const now = data[`자료${dayCode}`] as number[][][][]
 
     const getSubject = (code?: number) =>
-      code
-        ? subjects[code / 10 ** (teachersLen + 1) | 0]
-        : '없음'
+      code ? subjects[(code / 10 ** (teachersLen + 1)) | 0] : '없음'
     const getTeacher = (code?: number) =>
       code ? teachers[code % 10 ** teachersLen] : '없음'
 
