@@ -18,17 +18,17 @@ pnpm add comcigan.ts  # pnpm
 ## 사용 예시
 
 ```typescript
-import Comcigan, { School, Weekday } from "comcigan.ts";
+import Comcigan, { School, Weekday } from 'comcigan.ts'
 
-const comcigan = new Comcigan();
+const comcigan = new Comcigan()
 
 const main = async () => {
-  const searchedSchools = await comcigan.searchSchools("학교 이름"); // 학교 검색
-  const school = await School.fromName("학교 이름"); // 바로 불러오기 (== searchedSchools[0])
+  const searchedSchools = await comcigan.searchSchools('학교 이름') // 학교 검색
+  const school = await School.fromName('학교 이름') // 바로 불러오기 (== searchedSchools[0])
 
-  console.log(await school.getTimetable(3, 3, Weekday.Friday)); // 3학년 3반 금요일 시간표
-  console.log(await comcigan.getTimetable(school.code, 3, 3, Weekday.Friday)); // 학교 코드를 이용하는 방법
-};
+  console.log(await school.getTimetable(3, 3, Weekday.Friday)) // 3학년 3반 금요일 시간표
+  console.log(await comcigan.getTimetable(school.code, 3, 3, Weekday.Friday)) // 학교 코드를 이용하는 방법
+}
 
-main();
+main()
 ```
