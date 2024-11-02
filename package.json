@@ -15,10 +15,16 @@
     "prepack": "pnpm build",
     "test": "node -r ts-node/register --test tests/*.test.ts"
   },
-  "keywords": ["comcigan", "parser", "typescript", "school", "korean"],
+  "keywords": [
+    "comcigan",
+    "parser",
+    "typescript",
+    "school",
+    "korean"
+  ],
   "author": "Starcea <stardev.uwu@gmail.com>",
   "license": "LGPL-3.0-or-later",
-  "packageManager": "pnpm@9.4.0+sha512.f549b8a52c9d2b8536762f99c0722205efc5af913e77835dbccc3b0b0b2ca9e7dc8022b78062c17291c48e88749c70ce88eb5a74f1fa8c4bf5e18bb46c8bd83a",
+  "packageManager": "pnpm@9.12.3+sha512.cce0f9de9c5a7c95bef944169cc5dfe8741abfb145078c0d508b868056848a87c81e626246cb60967cbd7fd29a6c062ef73ff840d96b3c86c40ac92cf4a813ee",
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
     "@types/node": "^20.14.9",
@@ -32,6 +38,8 @@
     "undici": "^6.20.1"
   },
   "release": {
-    "branches": ["release"]
+    "branches": [
+      "release"
+    ]
   }
 }
