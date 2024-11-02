@@ -1,6 +1,6 @@
-import type { AxiosInstance } from 'axios'
 import { decode } from 'iconv-lite'
 import { RegExes } from './constants'
+import type HTTP from './http'
 
 interface Data {
   mainRoute: string
@@ -18,13 +18,11 @@ export default class DataManager {
 
   private _lastFetchDate = 0
 
-  constructor(private readonly rest: AxiosInstance) {}
+  constructor(private readonly http: HTTP) {}
 
   private async fetchData(): Promise<Data> {
-    const res = await this.rest.get('/st', {
-      responseType: 'arraybuffer',
-    })
-    const data = decode(Buffer.from(res.data), 'euc-kr')
+    const res = await this.http.get('/st').then((res) => res.body.arrayBuffer())
+    const data = decode(Buffer.from(res), 'euc-kr')
 
     const main = RegExes.MainRoute.exec(data)
     if (!main) throw new Error('Failed to fetch main route')

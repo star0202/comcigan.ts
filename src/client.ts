@@ -1,6 +1,6 @@
-import axios from 'axios'
 import { BASE_URL, USER_AGENT } from './constants'
 import DataManager from './data'
+import HTTP from './http'
 import School from './models/School'
 import type { Timetable } from './models/Timetable'
 import { mergeMap } from './utils/array'
@@ -8,24 +8,22 @@ import { encodeBase64, encodeEUCKR } from './utils/encode'
 import { parseResponse } from './utils/parse'
 
 export default class Comcigan {
-  private readonly rest = axios.create({
+  private readonly http = new HTTP({
     baseURL: BASE_URL,
-    headers: {
-      'User-Agent': USER_AGENT,
-    },
+    headers: { 'User-Agent': USER_AGENT },
   })
 
-  private readonly dataManager = new DataManager(this.rest)
+  private readonly dataManager = new DataManager(this.http)
 
   /** 학교를 검색합니다. */
   async searchSchools(schoolName: string): Promise<School[]> {
     const { mainRoute, searchRoute } = await this.dataManager.getData()
-    const res = await this.rest.get(
-      `${mainRoute}?${searchRoute}l${encodeEUCKR(schoolName)}`,
-    )
+    const res = await this.http
+      .get(`${mainRoute}?${searchRoute}l${encodeEUCKR(schoolName)}`)
+      .then((res) => res.body.text())
     const { 학교검색: data } = parseResponse<{
       학교검색: [number, string, string, number][]
-    }>(res.data)
+    }>(res)
 
     return data.map(
       ([regionCode, regionName, schoolName, schoolCode]) =>
@@ -48,10 +46,12 @@ export default class Comcigan {
       dayCode,
       subjectCode,
     } = await this.dataManager.getData()
-    const res = await this.rest.get(
-      `${mainRoute}_T?${encodeBase64(`${timetableRoute}_${schoolCode}_0_1`)}`,
-    )
-    const data = parseResponse(res.data)
+    const res = await this.http
+      .get(
+        `${mainRoute}_T?${encodeBase64(`${timetableRoute}_${schoolCode}_0_1`)}`,
+      )
+      .then((res) => res.body.text())
+    const data = parseResponse(res)
 
     const teachers = data[`자료${teacherCode}`] as string[]
     const teachersLen = Math.floor(Math.log10(teachers.length - 1)) + 1
