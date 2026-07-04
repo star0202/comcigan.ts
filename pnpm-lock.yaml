@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       iconv-lite:
-        specifier: ^0.6.3
-        version: 0.6.3
+        specifier: ^0.7.0
+        version: 0.7.3
       undici:
         specifier: ^6.20.1
         version: 6.20.1
@@ -671,6 +671,7 @@ packages:
   glob@10.4.2:
     resolution: {integrity: sha512-GwMlUF6PkPo3Gk21UxkCohOv0PLcIXVtKyLlpEI28R/cO/4eNOdmLk3CMW1wROV/WR/EsZOWAfBbBOqYvs88/w==}
     engines: {node: '>=16 || 14 >=14.18'}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
   globalthis@1.0.4:
@@ -752,8 +753,8 @@ packages:
     resolution: {integrity: sha512-74kytxOUSvNbjrT9KisAbaTZ/eJwD/LrbM/kh5j0IhPuJzwuA19dWvniFGwBzN9rVjg+O/e+F310PjObDXS+9Q==}
     engines: {node: '>=18.18.0'}
 
-  iconv-lite@0.6.3:
-    resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
+  iconv-lite@0.7.3:
+    resolution: {integrity: sha512-IKXpvIzjnC9XTAUbVBcMfGS0EPaIXtW6v+zr+RRp+hqULEpo0owZax6wyRwPOJbWbzjYspQwusTsfVr0ifh4uQ==}
     engines: {node: '>=0.10.0'}
 
   ignore@5.3.1:
@@ -2459,7 +2460,7 @@ snapshots:
 
   human-signals@7.0.0: {}
 
-  iconv-lite@0.6.3:
+  iconv-lite@0.7.3:
     dependencies:
       safer-buffer: 2.1.2
 
